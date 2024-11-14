@@ -32,6 +32,8 @@ type TaskArg struct {
 }
 
 type TaskResult struct {
+	// 扫描文件数量
+	FileCount int
 	// 任务参数
 	Arg *TaskArg
 	// 检出组件
@@ -49,7 +51,7 @@ type TaskResult struct {
 // RunTask 运行检测任务
 // arg: 任务参数
 func RunTask(ctx context.Context, arg *TaskArg) (result TaskResult) {
-
+	result.FileCount = 0
 	result.Start = time.Now()
 	defer func() {
 		result.End = time.Now()
@@ -130,6 +132,7 @@ func RunTask(ctx context.Context, arg *TaskArg) (result TaskResult) {
 					result.Deps = append(result.Deps, dep)
 					if arg.ResCallFunc != nil {
 						arg.ResCallFunc(file, dep)
+						result.FileCount++
 					}
 				}
 			})
