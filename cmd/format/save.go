@@ -18,6 +18,9 @@ type Report struct {
 }
 
 type TaskInfo struct {
+	// 扫描文件数量
+	FileCount int `json:"file_count" xml:"file_count" `
+
 	ToolVersion string `json:"tool_version" xml:"tool_version" `
 	// 检测目标名
 	AppName string `json:"app_name" xml:"app_name" `

@@ -222,6 +222,7 @@ func taskReport(r opensca.TaskResult) format.Report {
 	logs.Info("prepare report")
 
 	report := format.Report{}
+	report.TaskInfo.FileCount = r.FileCount
 	report.TaskInfo.ToolVersion = version
 	report.TaskInfo.AppName = appName
 	report.TaskInfo.Size = r.Size
